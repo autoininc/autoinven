@@ -183,7 +183,7 @@
                 });
             }
           });
-          $('#codeCheck').click(function(){
+          $('#codeCheck').off("click").on("click", function (){
             var vCode = $("#authCode").val();
             if(email!=''){
                 console.log('server sended authCode :' + authCode);
