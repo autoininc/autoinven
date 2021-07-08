@@ -1,4 +1,4 @@
-exports.emailIDF = function(req,res,app,db){
+exports.emailIDF = async function(req,res,app,db){
 
     let authNum = Math.random().toString().substr(2,6);
     
@@ -18,7 +18,7 @@ exports.emailIDF = function(req,res,app,db){
         host: mailConfig.mailhost,
         auth: {
             user: 'service@autoingroup.com',
-            pass: 'autoin2021$'
+            pass: 'autoin2020$'
         },
         tls:{
             rejectUnauthorized :false
