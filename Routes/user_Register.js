@@ -14,12 +14,12 @@ exports.register = function (req, res,app,db) {
         "password": crypto.createHash('sha512').update(req.body.password).digest('base64'),         //레인보우 테이블을 이용한 공격방어를 위해 추후 더 나은 보안기법 필요함.
         "email": req.body.email,
         "contactNumber": req.body.contactNumber1+'-'+req.body.contactNumber2+'-'+req.body.contactNumber3,
-        "address": req.body.address,
         "zipcode": req.body.zipcode,
+        "address": req.body.address,
         "national":req.body.national,
         "CN": req.body.CN,
-        "CA" :req.body.CA,
         "CZ": req.body.CZ,
+        "CA" :req.body.CA,
         "CCN": req.body.CCN
     }
 
@@ -34,13 +34,13 @@ exports.register = function (req, res,app,db) {
             req.session['password'] = user.password;
             req.session['contactNumber'] = user.contactNumber;
             req.session['email'] = user.email;
-            req.session['address'] = user.address;
             req.session['zipcode'] = user.zipcode;
+            req.session['address'] = user.address;
             req.session['national'] = user.national;
             req.session['CN'] = user.CN;
             req.session['CCN'] = user.CCN;
-            req.session['CA'] = user.CA;
             req.session['CZ'] = user.CZ;
+            req.session['CA'] = user.CA;
             res.send(true);
         }
         connection.end()
