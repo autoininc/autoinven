@@ -1,5 +1,3 @@
-
-
 module.exports = function(app,db){
     var express = require('express');
     var router = express.Router();
@@ -24,7 +22,6 @@ module.exports = function(app,db){
     });
 
     router.post('/Register',function(req,res,next){
-        console.log(req.body);  
         register.register(req,res,app,db);
     });
 
@@ -61,6 +58,6 @@ module.exports = function(app,db){
         console.log('user.js : ' + req.body.session.session.memberID);
         del.delete(req,res,app,db);
     });
-    
+
     return router;
 }
