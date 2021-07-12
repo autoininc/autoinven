@@ -7059,3 +7059,15 @@ img {
     display: none !important;
   }
 }
+
+.upload-btn{
+  padding: 6px 25px;
+  background-color:#FF6600;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+.upload-btn-hidden{
+  display: none;
+}
