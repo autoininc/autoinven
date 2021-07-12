@@ -8,8 +8,10 @@
 <body class="login-page">
   <style>
     input:focus{
+                  
                   outline : none;
                   box-shadow: 0 0 0 1.2px#ff8400;
+            
                 }
     select:focus{
                   outline : none;
@@ -20,7 +22,6 @@
         height : 35px;
         border-radius : 20px;
         margin-bottom: 20px;
-        padding: 5px 15px;
     }
     select{
       border-radius : 20px; 
@@ -28,7 +29,6 @@
       width : 100%; 
       height : 35px;
       margin-bottom: 20px;
-      padding: 5px 15px;
     }
     
   </style>
@@ -101,7 +101,7 @@
             <div>
               <div>Phone:</div>
               
-              <input type="text" name="contactNumber2" style = "width : 32%; float : left;">            
+              <input type="text" name="contactNumber1" style = "width : 32%; float : left;">            
               <div style ="float : left;">-</div>
               <input type="text" name="contactNumber2" style = "width : 32%; float : left;">
               <div style ="float : left;">-</div>
@@ -110,24 +110,24 @@
             </div>
             <div>
               <div>Address:</div>
-              <input type="text" id="zipcode" name="zipcode" placeholder="Zip Code" style = "width : 28%">
               <input type="text" id="address" name="address" placeholder="Address" style = "width : 70%; ">
+              <input type="text" id="zipcode" name="zipcode" placeholder="Zip Code" style = "width : 28%">
             </div>
             <div>
               <div>Company Name:</div>
               <input type="text" id="CN" name="CN" placeholder="Company Name" style = "width : 100%;">
             </div>
             <div>
-             <div>Company Address:</div>
-              <input type="text" id="CZ" name="CZ" placeholder="Zip Code" style = "width : 28%;">
+             <div>Company Address:</div> 
              <input type="text" id="CA" name="CA" placeholder="Company Address" style = "width : 70%;">
+             <input type="text" id="CZ" name="CZ" placeholder="Zip Code" style = "width : 28%;">
             </div>
             <div>
               <div>Company Contact:</div>
               <input type="text" name="CCN" placeholder="Company Contact Number" id="CCN" style = "width : 100%">
             </div>
             <div>
-              <button type="submit" id="regFormBtn" class="btn btn-primary">Sign Up</button>
+              <button type="submit" id="regFormBtn" class="btn">Sign Up</button>
             </div>
           </form>
           </div>
