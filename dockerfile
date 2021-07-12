@@ -16,4 +16,5 @@ RUN npm install
 COPY . .
 
 EXPOSE 80
-CMD [ "npm", "run", "serv"]
+# CMD ["npm", "run", "serv"]
+CMD ["nodemon", "-L", "./webserver.js"]
