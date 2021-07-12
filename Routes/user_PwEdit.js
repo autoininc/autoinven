@@ -1,4 +1,5 @@
-const crypto = require('crypto');
+exports.editPW = function (req, res,app,db) {
+    const crypto = require('crypto');
 
     var password = crypto.createHash('sha512').update(req.body.password).digest('base64');
     var SQL = `UPDATE Member SET password=? WHERE memberID='${req.session.memberID}'`
