@@ -1,7 +1,4 @@
 exports.edit = function (req, res,app,db) {
-    const crypto = require('crypto');
-
-    var password = crypto.createHash('sha512').update(req.body.password).digest('base64');
     var email = req.body.email;
     var contactNumber = req.body.contactNumber;
     var address = req.body.address;
@@ -9,14 +6,13 @@ exports.edit = function (req, res,app,db) {
     var CN = req.body.CN;
     var CA = req.body.CA;
     var CCN = req.body.CCN;
-    var SQL = `UPDATE Member SET password=?,email=?,contactNumber=?,
+    var SQL = `UPDATE Member SET email=?,contactNumber=?,
     address=?,national=?,CN=?,CA=?,CCN=? WHERE memberID='${req.session.memberID}'`
-    var check = db.query(SQL,[password,email,contactNumber,address,national,CN,CA,CCN]);
+    var check = db.query(SQL,[email,contactNumber,address,national,CN,CA,CCN]);
     if (!check) {
         console.log("error ocurred", error);
         res.redirect('/User/Edit');
     } else {
-            req.session['password'] = password;
             req.session['email'] = email;
             req.session['contactNumber'] = contactNumber;
             req.session['address'] = address;
