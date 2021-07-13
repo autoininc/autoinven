@@ -120,7 +120,21 @@
                             Swal.fire({
                                 icon: 'error',
                                 title: 'fail',
-                                text:  '창고이름, infocomment, etccomment를 영어 및 숫자로 입력해주세요.',
+                                text:  'Warehouse Name, infoComment, etcComment를 영어 및 숫자로 입력해주세요.',
+                            }).then(() => {
+                            })
+                        } else if (data == "errortype7") {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'fail',
+                                text:  '중복된 Warehouse ID가 존재합니다.',
+                            }).then(() => {
+                            })
+                        } else if (data == "errortype8") {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'fail',
+                                text:  '로그인 후 진행해주세요.',
                             }).then(() => {
                             })
                         } else if (data == "errortype0") {
