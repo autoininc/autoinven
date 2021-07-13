@@ -37,7 +37,7 @@
     "net": "^1.0.2",
     "node-pickle": "0.0.2",
     "nodemailer": "^6.4.13",
-    "nodemon": "^2.0.7",
+    "nodemon": "^2.0.12",
     "paypal-rest-sdk": "^1.8.1",
     "pickle": "^0.2.0",
     "sync-mysql": "^3.0.1"

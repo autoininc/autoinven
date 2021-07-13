@@ -5,6 +5,7 @@ module.exports = function(app,db){
     const register = require('./user_Register');
     const login = require('./user_Login');
     const edit = require('./user_Edit');
+    const pwEdit = require('./user_PwEdit');
     const del = require('./user_Delete');
     const logout = require('./user_Logout');
     const emailIDF = require('./user_EmailIDF');
@@ -46,8 +47,16 @@ module.exports = function(app,db){
         res.render('User/user_Edit',{'app':app,'session':req.session,'db':db});
     });
 
-    router.post('/Edit',function(req,res,next){
+    router.post('/Edit',function(req,res,next){        
         edit.edit(req,res,app,db);
+    });
+
+    router.get('/Edit/PW',function(req,res,next){
+        res.render('User/user_PwEdit',{'app':app,'session':req.session,'db':db});
+    });
+
+    router.post('/Edit/PW',function(req,res,next){
+        pwEdit.pwEdit(req,res,app,db);
     });
 
     router.get('/Show',function(req,res,next){
