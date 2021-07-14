@@ -1,7 +1,7 @@
 ---
-name: Custom Feature Report
-about: Suggest new feature of this project
-title: "[Feature]"
+name: Pull Request
+about: Pull Request
+title: ""
 labels: ''
 assignees: ''
 
