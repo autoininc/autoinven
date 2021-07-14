@@ -21,7 +21,7 @@
         <form action="/Provider/EnrollWH" method="post" enctype="multipart/form-data" id="enrollForm" onsubmit="return false;">
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Warehouse ID</label>
-            <div class="col-sm-4"><input type="text" class="form-control" id="warehouseID" name="warehouseID"placeholder="창고등록번호입력"></div>
+            <div class="col-sm-4"><input type="text" class="form-control" id="warehouseID" name="warehouseID"placeholder="Warehouse ID number"></div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Warehouse Name</label>
@@ -39,15 +39,15 @@
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">landArea</label>
-            <div class="col-sm-10"><input type="text" class="form-control" id="landArea" name="landArea" placeholder="숫자만 입력"></div>
+            <div class="col-sm-10"><input type="text" class="form-control" id="landArea" name="landArea" placeholder="only number"></div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">floorArea</label>
-            <div class="col-sm-10"><input type="text" class="form-control" id="floorArea" name="floorArea" placeholder="숫자만 입력"></div>
+            <div class="col-sm-10"><input type="text" class="form-control" id="floorArea" name="floorArea" placeholder="only number"></div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Price per area</label>
-            <div class="col-sm-10"><input type="text" class="form-control" id="price" name="price" placeholder="ex)(단위 100000)"></div>
+            <div class="col-sm-10"><input type="text" class="form-control" id="price" name="price" placeholder="ex)(100000m² → 1)"></div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">infoComment</label>
@@ -71,7 +71,7 @@
               <input type="text" class="form-control" id="img_name" name="img_name" readonly="readonly" disabled="disabled" placeholder="warehouseImage">
             </div>
             <div class="col-sm-2">
-              <label class="form-control btn-primary" for="profile_img" style="text-align:center;">사진 업로드</label>
+              <label class="form-control btn-primary" for="profile_img" style="text-align:center;">Upload Image</label>
               <input type='file' class="upload-btn-hidden" id='profile_img' name='profile_img' accept='image/*' multiple />
             </div>
           </div>
