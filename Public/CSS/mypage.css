@@ -1,0 +1,29 @@
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+body {
+  background: #f5f6f7;
+  width: 1000px;
+}
+
+.userInfo {
+  display: block;
+  padding: 100px 50px 100px 50px;
+  margin: 20px;
+  margin-left: 250px;
+  border-radius: 10px 10px 10px 10px;
+  background-color: white;
+  text-align: center;
+}
+
+img {
+  width: 120px;
+}
+
+h2 {
+  margin: 30px;
+}

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>물품 입고 확인 및 등록</title>
+    <link rel="stylesheet" href="/CSS/warehousingStyle.css">
+    <link rel="stylesheet" href="/CSS/item.css">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+   </head>
+  <body>
+    <%- include('nav') %>
+
+    <div class="warehousingContent">
+
+        <button class = "whRegBtn" onclick="location.href='registerItem'">물품 등록</button>
+
+        <!-- 물품 등록 연결되면 삭제 -->
+        <form action="randomTest" method="GET">
+            <button class = "whRegTestBtn">랜덤 등록 테스트</button>
+        </form>
+
+        <table class = "whTable">
+            <tr>
+                <th colspan="5">물품 입고 확인</th>
+            </tr>
+            <tr>
+                <th>RFID</th>
+                <th>물품명</th>
+                <th>물품수량</th>
+                <th>입고상황</th>
+                <th>입고사진</th>
+            </tr>
+            <%- table_data %>
+        </table>
+    </div>
+</body>
+</html>
