@@ -13,6 +13,8 @@ const fs = require('fs');
 const paypal = require("paypal-rest-sdk");
 const nodePickle= require('pickle');
 const bcsock = require('./Module/bcsocket');
+var apolloServer = require('./apollo');
+var http = require('http');
 
 // 1. 설정
 // 1) View 경로 설정
@@ -38,6 +40,12 @@ app.use(fileUpload({
   limits:{fileSize:50*1024*1024}
 }));
 
+// apollo
+var server = http.createServer(app);
+apolloServer.applyMiddleware({ app });
+apolloServer.installSubscriptionHandlers(server);
+
+
 // 8) 세션을 적용
 app.use(session({
 		// 8-1) 세션 암호화
@@ -56,6 +64,7 @@ app.use('/User',require('./Routes/user')(app,dbConnection));
 app.use('/Admin',require('./Routes/ad')(app,dbConnection));
 app.use('/Provider',require('./Routes/pv')(app,dbConnection));
 app.use('/Buyer',require('./Routes/by')(app,dbConnection));
+app.use('/Iot',require('./Routes/iot')(app,dbConnection));
 
 app.get('/Public/Upload/:filename',function(req,res){
   console.log(req);
@@ -82,7 +91,7 @@ app.post('/RFID',function(req,res){
       obj['status']=orders[i].status;
       obj['orderinfo']=[];
       url = "select * from OrderInfo where oid="+orders[i].oid;
-      let orderInfos = dbConnection.query(url); 
+      let orderInfos = dbConnection.query(url);
       for(var t=0;t<orderInfos.length;++t){
         var packet = {};
         packet['partname'] = orderInfos[t].partname;
@@ -117,11 +126,7 @@ app.post('/RFID/Update',function(req,res){
 });
 
 
-
 // 11) 서버를 열 때 설정 함수
-app.listen(5000,function(req,res){
+server.listen(5000,function(req,res){
     console.log('connected!!');
 });
-
-
-                            

@@ -1,0 +1,24 @@
+<div class="nav">
+    <div type="button" class="menu click">
+        <i>메뉴</i>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/iot/monitoring">실시간 창고 확인</a></li>
+            <li><a href="/iot/warehousing">물품 입고 확인 및 등록</a></li>
+            <li><a href="/iot/help">Help</a></li>
+            <li><a href="/iot">My page</a></li>
+        </ul>
+    </nav>
+</div>
+<script type="text/javascript">
+	$( document ).ready( function() {
+		$( '.nav .menu' ).click( function() {
+			$(this).toggleClass('on');
+			$('.nav').toggleClass('on');
+		} );
+	} );
+</script>
