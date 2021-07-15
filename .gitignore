@@ -1,0 +1,4 @@
+# Autoinven Git Ignore #
+
+*.sql
+node_modules/
