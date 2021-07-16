@@ -83,7 +83,9 @@ exports.Mywarehouse = function(req,res,app,db){
               "\"useableArea\" :"+ results[step].useableArea +","+
               "\"infoComment\" :\""+ results[step].infoComment+"\","+
               "\"etcComment\" :\""+ results[step].etcComment+"\","+
-              "\"memberList\": ["; 
+              "\"zipcode\" :\""+ results[step].zipcode+"\","+
+              "\"useIot\" :"+ results[step].useIot+","+
+              "\"memberList\": [";
               for(i =0;i<idList.length;i++){
                obj+="\""+idList[i].memberID+"\"";
                 if(i+1<idList.length)obj+=",";
@@ -116,7 +118,7 @@ exports.ReqEnrollAns = function(req,res,app,db){
         res.send(true);
         connection.end();
       }
-    });    
+    });
   }
     else if(answer="Cancel"){
       connection.query(`DELETE FROM RequestForEnroll WHERE reqID =${reqID}`,function (error, results, fields) {
