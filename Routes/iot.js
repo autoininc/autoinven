@@ -4,7 +4,6 @@ module.exports = function(app,db){
 	const router = express.Router();
 
 	const iot_mypage = require('./iot_mypage');
-	const iot_monitoring = require('./iot_monitoring');
 	const iot_warehousing = require('./iot_warehousing');
 
 	var check = (req, res, next) => {
@@ -25,7 +24,7 @@ module.exports = function(app,db){
 	router.get('/', (req, res, next) => { iot_mypage.init(req, res, db) });
 	router.post('/', (req, res, next) => { iot_mypage.sessionCheck(req, res, db) });
 
-	router.get('/monitoring', (req, res, next) => { iot_monitoring.init(req, res, db) });
+	router.get('/monitoring', (req, res, next) => { res.render('Iot/monitoring') });
 
 	router.get('/warehousing', (req, res, next) => { iot_warehousing.init(req, res, db) });
 

@@ -9,14 +9,11 @@ exports.init = function(req, res, db) {
 exports.sessionCheck = function (req, res, db) {
 	var id = req.session['memberID'];
 	var wid = req.body.wid;
-	if(!id) res.redirect('/User/Login');
+	var row = db.query(`select count(*) as num from (select memberID, warehouseID from Provider union select memberID, warehouseID from Buyer) as pb where memberID=? and warehouseID=?;`, [id, wid]);
+	if (!row) console.log('err: iot.sessionCheck');
+	else if (!row[0].num) res.status(401).send('잘못된 접근입니다.');  // 창고 provider/buyer가 아님
 	else {
-		var row = db.query(`select count(*) as num from (select memberID, warehouseID from Provider union select memberID, warehouseID from Buyer) as pb where memberID=? and warehouseID=?;`, [id, wid]);
-		if (!row) console.log('err: iot.sessionCheck');
-		else if (!row[0].num) res.status(401).send('잘못된 접근입니다.');
-		else {
-			req.session['warehouseID'] = wid;
-			res.redirect('/iot');
-		}
+		req.session['warehouseID'] = wid;
+		res.redirect('/iot');
 	}
 }
