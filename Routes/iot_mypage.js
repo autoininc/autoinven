@@ -1,15 +1,8 @@
 exports.init = function(req, res, db) {
     var id = req.session['memberID'];
-    var wid = req.session['warehouseID'];
-    var ref = req.headers.referer ? req.headers.referer.slice(-21) : '';
-	if(!id) res.redirect('/User/Login');
-	else if (!wid) res.status(401).send('잘못된 접근입니다.');
-	else if (ref !== '/Provider/MyWarehouse' && ref !== '/Buyer/MyWarehouse') res.status(401).send('잘못된 접근입니다.');
-	else {
-		var row = db.query("SELECT * FROM Member WHERE memberID=?;", [id]);
-		if (!row) console.log('err: mypage');
-		else res.render('Iot/mypage', {uname: row[0].name});
-    }
+	var row = db.query("SELECT * FROM Member WHERE memberID=?;", [id]);
+	if (!row) console.log('err: mypage');
+	else res.render('Iot/mypage', {uname: row[0].name});
 }
 
 
