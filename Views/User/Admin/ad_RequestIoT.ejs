@@ -31,16 +31,12 @@
 
             <h2 class="mb-3">Submit lists</h2>
             <% for(var i=0; i < Object.keys(items).length; i++) { %>
-              <p id = "whID<%=i%>" style="display: none"><%= items['item'+i].warehouseID %></p>
+              <p id = "whID<%=i%>" style="display: none"><%= items['item'+i].warehouseID %></p>              
               <p id = "reqType<%=i%>" style="display: none"><%= items['item'+i].reqType %></p>
-              <p id = "reqID<%=i%>" style="display: none"><%= items['item'+i].reqID %></p>
-              <p id = "providerID<%=i%>" style="display: none"><%= items['item'+i].providerID%></p>
-              <p id = "floorArea<%=i%>" style="display: none"><%= items['item'+i].floorArea%></p>
+              <p id = "memberID<%=i%>" style="display: none"><%= items['item'+i].memberID%></p>
               <p id = "national<%=i%>" style="display: none"><%= items['item'+i].national%></p>
               <p id = "CN<%=i%>" style="display: none"><%= items['item'+i].CN%></p>
-              <p id = "CCN<%=i%>" style="display: none"><%= items['item'+i].CCN%></p>
               <p id = "name<%=i%>" style="display: none"><%= items['item'+i].name%></p>
-              <p id = "CA<%=i%>" style="display: none"><%= items['item'+i].CA%></p>
               <p id = "address<%=i%>" style="display: none"><%= items['item'+i].address%></p> 
               
             <%}%>
@@ -48,31 +44,27 @@
               <table class="board-table table ">
                 <thead class="thead-dark">
                   <tr class="d-flex">
-                    <th class="col-1">창고 번호</th>
+                    <th class="col-1">창고 번호</th>                    
                     <th class="col-1">상태</th>
-                    <th class="col-1">창고 면적</th>
                     <th class="col-2">ID</th>
                     <th class="col-2">이름</th>
                     <th class="col-3">창고 주소</th>
                     <th class="col-1">국적</th>
                     <th class="col-1">회사 이름</th>
-                    <th class="col-3">회사 주소</th>
                     <th class="col-1"></th>
                   </tr>
                 </thead>
                 <tbody>
                   <% for(var i=0; i < Object.keys(items).length; i++) { %>
-                    <% if(items['item'+i].reqType == "ReqEnrollPV"){ %>
+                    <% if(items['item'+i].reqType == "ReqEnrollIoT"){ %>
                       <tr class="table-warning d-flex">
                         <td class="col-1"><%= items['item'+i].warehouseID %></td>
                         <td class="col-1">승인대기</td>
-                        <td class="col-1"><%= items['item'+i].floorArea %></td>
-                        <td class="col-2"><%= items['item'+i].providerID %></td>
+                        <td class="col-2"><%= items['item'+i].memberID %></td>
                         <td class="col-2"><%= items['item'+i].name %></td>
                         <td class="col-3"><%= items['item'+i].address %></td>
                         <td class="col-1"><%= items['item'+i].national %></td>
                         <td class="col-1"><%= items['item'+i].CN %></td>
-                        <td class="col-3"><%= items['item'+i].CA %></td>
                         <td class="col-1" style="float:right; padding:0px 10px 0px 0px;">
                           <button type="button" class="btn btn-sm" onclick="adClick(<%=i%>, 1)">Approval</button>
                           <button type="button" class="btn btn-sm" onclick="adClick(<%=i%>, 0)">Cancel</button>
@@ -99,19 +91,17 @@
               type: 'POST',
               data: {
                 answer: "Approve",
-                providerID: document.getElementById('providerID'+i).innerText,
                 reqType: document.getElementById('reqType'+i).innerText,
-                warehouseID: parseInt(document.getElementById('whID'+i).innerText),
-                reqID: parseInt(document.getElementById("reqID"+i).innerText)
+                warehouseID: parseInt(document.getElementById('whID'+i).innerText)
               },
               success:function(data){
                 if(data==true){
                   alert("승인하였습니다.");
-                  window.location.href = "/Admin/RequestEnroll";
+                  window.location.href = "/Admin/RequestIoT";
                 }
                 else{
                   alert("에러가 발생했습니다.");
-                  window.location.href = "/Admin/RequestEnroll";
+                  window.location.href = "/Admin/RequestIoT";
                 }
               }
           });
@@ -122,17 +112,17 @@
               type: 'POST',
               data: {
                 answer: "Reject",
-                reqID: parseInt(document.getElementById('reqID'+i).innerText),
+                reqType: document.getElementById('reqType'+i).innerText,
                 warehouseID: parseInt(document.getElementById('whID'+i).innerText),
               },
               success:function(data){
                 if(data==true){
                   alert("거절하였습니다.");
-                  window.location.href = "/Admin/RequestEnroll";
+                  window.location.href = "/Admin/RequestIoT";
                 }
                 else{
                   alert("에러가 발생했습니다.");
-                  window.location.href = "/Admin/RequestEnroll";
+                  window.location.href = "/Admin/RequestIoT";
                 }
               }
           });

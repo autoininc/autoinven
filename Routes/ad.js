@@ -19,6 +19,7 @@ module.exports = function(app,db){
         var items = ad_ReqIoT.RequestForIoT(req,res,app,db);
         console.log(items);
         items = JSON.parse(items);
+        console.log(items);
         res.render('User/Admin/ad_RequestIoT',{'app':app,'session':req.session,'db':db,'items':items});
     });
     router.post('/RequestIoT',function(req,res,next){
