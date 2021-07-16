@@ -125,6 +125,8 @@ app.post('/RFID/Update',function(req,res){
   });
 });
 
+// 없는 페이지 alert 띄우기
+app.use((req, res, next) => { res.render('Alert/cannotAccess') });
 
 // 11) 서버를 열 때 설정 함수
 server.listen(5000,function(req,res){

@@ -9,15 +9,15 @@ module.exports = function(app,db){
 	var check = (req, res, next) => {
 		var id = req.session['memberID'];
 		var wid = req.session['warehouseID'];
-		var ref = req.headers.referer ? req.headers.referer.toLowerCase() : '';
+		var hostIndex = (req.protocol + '://' + req.get('host')).length;
+		var ref = req.headers.referer ? req.headers.referer.toLowerCase().substring(hostIndex) : '';
 		const refererPaths = ['/provider/mywarehouse', '/buyer/mywarehouse', '/iot', '/iot/monitoring', '/iot/warehousing', '/iot/help'];
 
-		// /iot 하위 모든 경로에 대해 검사
-		if (!id) res.redirect('/User/Login');  // 로그인 안한 상태: out
-		else if (req.path === '/' && req.method === 'POST') return next();  // 세션에 wid 등록하는 요청은 pass
-		else if (!wid) res.send('잘못된 접근입니다.');  // 세션에 wid 없음: out
-		else if (refererPaths.every((e) => !ref.includes(e))) res.send('잘못된 접근입니다.');  // referer가 refererPaths에 포함되지 않음: out
-		else next();  // 모두 통과: ok
+		if (!id) res.render('Alert/needLogin');
+		else if (req.path === '/' && req.method === 'POST') return next();
+		else if (!wid) res.render('Alert/cannotAccess');
+		else if (!refererPaths.some((e) => (ref === e || ref === e + '/'))) res.render('Alert/cannotAccess');
+		else next();
 	};
 	router.use(check);
 

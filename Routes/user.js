@@ -10,6 +10,15 @@ module.exports = function(app,db){
     const logout = require('./user_Logout');
     const emailIDF = require('./user_EmailIDF');
 
+    var check = (req, res, next) => {
+        const id = req.session['memberID'];
+        const path = req.path.toLowerCase();
+        const needLoginPath = ['/Logout', '/edit', '/edit/pw', '/show', '/delete'];
+        if (!id && needLoginPath.some((e) => (path === e || path === e + '/'))) res.render('Alert/cannotAccess');
+        else next();
+    };
+    router.use(check);
+
     router.post('/Register/MemberID',function(req,res,next){
         register.checkID(req,res,app,db);
     });
