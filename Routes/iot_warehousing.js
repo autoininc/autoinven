@@ -1,6 +1,7 @@
 exports.init = function(req, res, db) {
 	var id = req.session['memberID'];
-	var row = db.query("SELECT * FROM iot WHERE id=?;", [id]);
+	var wid = req.session['warehouseID'];
+	var row = db.query("SELECT * FROM iot WHERE id=? and warehouseID=?;", [id, wid]);
 	if (!row) console.log('err: warehousing init');
 	else {
 		var items = '';
@@ -28,8 +29,9 @@ exports.registerItem = function(req, res, db) {
 	var received = 0;
 	var picture = `./${rfid}.jpg`;
 	var id = req.session['memberID'];
+	var wid = req.session['warehouseID'];
 
-	var row = db.query(`INSERT INTO iot VALUES('${rfid}', '${id}', '${name}', ${num}, ${received}, '${picture}');`);
+	var row = db.query(`INSERT INTO iot VALUES('${rfid}', '${id}', '${name}', ${num}, ${received}, '${picture}',${wid});`);
 	if (!row) console.log('err: registerItem');
 	else res.redirect('warehousing');
 }
@@ -43,8 +45,9 @@ exports.randomTest = function(req, res, db) {
 	var received = Math.floor(Math.random() * 2);
 	var picture = `./${rfid}.jpg`;
 	var id = req.session['memberID'];
+	var wid = req.session['warehouseID'];
 
-	var row = db.query(`INSERT INTO iot VALUES('${rfid}', '${id}', '${name}', ${num}, ${received}, '${picture}');`);
+	var row = db.query(`INSERT INTO iot VALUES('${rfid}', '${id}', '${name}', ${num}, ${received}, '${picture}', ${wid});`);
 		if (!row) console.log('err: randomTest');
 		else res.redirect('warehousing');
 }
