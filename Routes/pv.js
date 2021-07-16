@@ -41,6 +41,10 @@ module.exports = function(app,db){
     router.post('/MyWarehouse/Enroll/Ans',function(req,res,next){
         pv_myWH.ReqEnrollAns(req,res,app,db);
     });
+
+    router.post('/MyWarehouse/IoT/Ans',function(req,res,next){
+        pv_myWH.ReqIoTAns(req,res,app,db);
+    });
     router.get('/MyWarehouse',function(req,res,next){
         var enrollItems = pv_myWH.RequestForEnroll(req,res,app,db);
         var requestItems = pv_myWH.RequestForBuy(req,res,app,db);

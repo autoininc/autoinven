@@ -62,7 +62,8 @@ exports.EnrollWH = function(req,res,app,db,fileName){
             "price": req.body.price,
             "infoComment": req.body.infoComment,
             "etcComment" :req.body.etcComment,
-            "iotStat" : "N"  // pv_EnrollWH.ejs - iotStat 구현되면 수정
+            "iotStat" : "N"
+
         }
         let reqResult = db.query('SELECT * from RequestForEnroll ORDER BY reqID DESC');
         //let logResult = db.query('SELECT * from Log ORDER BY logID DESC');

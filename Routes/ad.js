@@ -2,6 +2,7 @@ module.exports = function(app,db){
     const express = require('express');
     const router = express.Router();
     const ad_ReqEnroll = require('./ad_RequestEnroll');
+    const ad_ReqIoT = require('./ad_RequestIoT');
     const ad_ReqBuy = require('./ad_RequestBuy');
     const ad_ContractInfo = require('./ad_ContractInfo');
 
@@ -13,6 +14,16 @@ module.exports = function(app,db){
     });
     router.post('/RequestEnroll',function(req,res,next){
         ad_ReqEnroll.withAnswer(req,res,app,db);
+    });
+    router.get('/RequestIoT',function(req,res,next){
+        var items = ad_ReqIoT.RequestForIoT(req,res,app,db);
+        console.log(items);
+        items = JSON.parse(items);
+        console.log(items);
+        res.render('User/Admin/ad_RequestIoT',{'app':app,'session':req.session,'db':db,'items':items});
+    });
+    router.post('/RequestIoT',function(req,res,next){
+        ad_ReqIoT.withAnswer(req,res,app,db);
     });
     router.get('/RequestBuy',function(req,res,next){
         var items = ad_ReqBuy.RequestForBuy(req,res,app,db);
