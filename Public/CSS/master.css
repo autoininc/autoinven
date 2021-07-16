@@ -28,6 +28,9 @@
 .two_btn {
   float: left;
 }
+.two_btn_r {
+  float: right;
+}
 
 #content {
     width: 100%;
@@ -36,6 +39,7 @@
     position: absolute;
     top: 0;
     right: 0;
+    margin-top: 90px;
 }
 
 #sidebar {
@@ -822,6 +826,14 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .table-condensed>thead>tr>th {
   position: relative;
   z-index: -1;
+}
+
+.table {
+  text-align: center;
+}
+
+.table-bg{
+  background-color: #ffffff;
 }
 
 .btn,

@@ -3,15 +3,20 @@ module.exports = function(app,db){
 	const express = require('express');
 	const router = express.Router();
 
-	var iot_mypage = require('./iot_mypage');
 	const iot_monitoring = require('./iot_monitoring');
 	const iot_warehousing = require('./iot_warehousing');
+	const iot_statistics = require('./iot_statistics');
+	const iot_help = require('./iot_help');
 
-	router.get('/', (req, res, next) => { iot_mypage.init(req, res, db) });
+	router.get('/', (req, res, next) => { iot_monitoring.init(req, res, db) });
 
 	router.get('/monitoring', (req, res, next) => { iot_monitoring.init(req, res, db) });
 
 	router.get('/warehousing', (req, res, next) => { iot_warehousing.init(req, res, db) });
+
+	router.get('/statistics', (req, res, next) => { iot_statistics.init(req, res, db) });
+	
+	router.get('/help', (req, res, next) => { iot_help.init(req, res, db) });
 
 	router.get('/randomTest', (req, res, next) => { iot_warehousing.randomTest(req, res, db) });
 

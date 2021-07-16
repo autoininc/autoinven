@@ -1,38 +1,45 @@
 <!doctype html>
 <html lang="ko">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>물품 입고 확인 및 등록</title>
-    <link rel="stylesheet" href="/CSS/iot.css" />
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-   </head>
-  <body>
+
+<head>
+  <%- include('../head') %>
+  <meta charset="utf-8">
+  <title>물품 입고 확인 및 등록</title>
+  <link rel="stylesheet" href="/CSS/iot.css" />
+</head>
+
+<body>
+  <div id="content">
     <%- include('nav') %>
 
-    <div class="warehousingContent">
-
-        <button class = "whRegBtn" onclick="location.href='registerItem'">물품 등록</button>
-
-        <!-- 물품 등록 연결되면 삭제 -->
-        <form action="randomTest" method="GET">
-            <button class = "whRegTestBtn">랜덤 등록 테스트</button>
-        </form>
-
-        <table class = "whTable">
-            <tr>
-                <th colspan="5">물품 입고 확인</th>
-            </tr>
-            <tr>
-                <th>RFID</th>
-                <th>물품명</th>
-                <th>물품수량</th>
-                <th>입고상황</th>
-                <th>입고사진</th>
-            </tr>
-            <%- table_data %>
-        </table>
+    <div class="container">
+      <button class="btn btn-primary two_btn_r" onclick="location.href='registerItem'">물품 등록</button>
+      <!-- 물품 등록 연결되면 삭제 -->
+      <form action="randomTest" method="GET">
+        <button class="btn btn-primary two_btn_r">랜덤 등록 테스트</button>
+      </form>
     </div>
+
+    <div class="container">
+      <div class="container mb-3">
+        <h2 class="mb-3">물품 입고 확인</h2>
+      </div>
+      <div class="table-responsive">
+        <table class="board-table table">
+          <thead class="thead-dark">
+            <tr>
+              <th>RFID</th>
+              <th>Product Name</th>
+              <th>Product Quantity</th>
+              <th>Shipping State</th>
+              <th>Image</th>
+            </tr>
+          </thead>
+          <tbody><%- table_data %> </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>
