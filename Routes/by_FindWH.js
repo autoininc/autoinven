@@ -17,7 +17,9 @@ exports.findWH = function (req, res,app,db) {
                 "\"useableArea\" :"+ results[step].useableArea +","+
                 "\"price\" :"+ results[step].price +","+
                 "\"infoComment\" :\""+ results[step].infoComment+"\","+
-               "\"etcComment\" :\""+ results[step].etcComment+"\""+
+               "\"etcComment\" :\""+ results[step].etcComment+"\","+
+                "\"zipcode\" :\""+ results[step].zipcode+"\","+
+                "\"useIot\" :"+ results[step].useIot+
             "}";
             items+=obj;
             if(step+1!=results.length)items+=","
