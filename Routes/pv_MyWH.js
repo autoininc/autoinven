@@ -84,7 +84,7 @@ exports.Mywarehouse = function(req,res,app,db){
               "\"infoComment\" :\""+ results[step].infoComment+"\","+
               "\"etcComment\" :\""+ results[step].etcComment+"\","+
               "\"zipcode\" :\""+ results[step].zipcode+"\","+
-              "\"useIot\" :"+ results[step].useIot+","+
+              "\"iotStat\" :\""+ results[step].iotStat+"\","+
               "\"memberList\": [";
               for(i =0;i<idList.length;i++){
                obj+="\""+idList[i].memberID+"\"";

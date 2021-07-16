@@ -28,11 +28,15 @@
                   </a>
                 </div>
                 <div id="collapse<%=i%>" class="collapse" data-parent="#accordion">
-                  <% if (wList['item' + i].useIot) { %>
+                  <% if (wList['item' + i].iotStat === 'Y' || wList['item' + i].iotStat === 'W') { %>
                     <div style="text-align: right; padding-right: 5%;">
                       <form action="/iot" method="POST">
                         <input type="hidden" id="wid" name="wid" value="<%= wList['item' + i].warehouseID %>">
-                        <button class="btn btn-primary">IoT</button>
+                        <% if (wList['item' + i].iotStat === 'Y') { %>
+                          <button class="btn btn-primary">IoT</button>
+                        <% } else { %>
+                          <button class="btn btn-default" disabled>IoT</button>
+                        <% } %>
                       </form>
                     </div>
                   <% } %>
