@@ -83,6 +83,7 @@ exports.Mywarehouse = function(req,res,app,db){
               "\"useableArea\" :"+ results[step].useableArea +","+
               "\"infoComment\" :\""+ results[step].infoComment+"\","+
               "\"etcComment\" :\""+ results[step].etcComment+"\","+
+              "\"iotStat\" :\""+ results[step].iotStat+"\","+
               "\"memberList\": ["; 
               for(i =0;i<idList.length;i++){
                obj+="\""+idList[i].memberID+"\"";
@@ -96,6 +97,23 @@ exports.Mywarehouse = function(req,res,app,db){
   }
   items +="}";
   return items;
+}
+
+exports.ReqIoTAns = function(req,res,app,db){
+  var warehouseID = req.body.warehouseID;
+  var mysql = require('mysql');
+  var connection = mysql.createConnection(require('../Module/db').info);
+  connection.connect();
+  connection.query(`UPDATE Warehouse SET iotStat='W' WHERE warehouseID=${warehouseID}`,function (error, results, fields) {
+    if(error){
+      console.log(error);
+      res.send(false);
+      connection.end();
+    } else {
+      res.send(true);
+      connection.end();
+    }
+  });
 }
 
 exports.ReqEnrollAns = function(req,res,app,db){
