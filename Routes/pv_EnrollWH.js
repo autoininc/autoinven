@@ -60,7 +60,8 @@ exports.EnrollWH = function(req,res,app,db,fileName){
             "useableArea":  req.body.floorArea,
             "price": req.body.price,
             "infoComment": req.body.infoComment,
-            "etcComment" :req.body.etcComment
+            "etcComment" :req.body.etcComment,
+            "iotStat" : "N"
         }
         let reqResult = db.query('SELECT * from RequestForEnroll ORDER BY reqID DESC');
         //let logResult = db.query('SELECT * from Log ORDER BY logID DESC');
