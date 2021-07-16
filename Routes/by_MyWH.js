@@ -52,7 +52,9 @@ exports.Mywarehouse = function(req,res,app,db){
               "\"price\" :"+ results[step].price +","+
               "\"area\":" +results[step].area+","+
               "\"infoComment\" :\""+ results[step].infoComment+"\","+
-              "\"etcComment\" :\""+ results[step].etcComment+"\""+
+              "\"etcComment\" :\""+ results[step].etcComment+"\","+
+              "\"zipcode\" :\""+ results[step].zipcode+"\","+
+              "\"iotStat\" :\""+ results[step].iotStat+"\""+
           "}";
           items+=obj;
 
@@ -171,5 +173,5 @@ exports.ReqBuyWithAnswer = function(req,res,app,db){
 }
 
 exports.GetAmountsForItems = function(req,res,app,db){
-  
+
 }

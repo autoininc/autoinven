@@ -1,24 +1,22 @@
 exports.init = function(req, res, db) {
-	if(!req.session['memberID']) res.status(401).render('unauthorized');
+	var id = req.session['memberID'];
+	var row = db.query("SELECT * FROM iot WHERE id=?;", [id]);
+	if (!row) console.log('err: warehousing init');
 	else {
-		var row = db.query("SELECT * FROM iot WHERE id=?;", [req.session['memberID']]);
-			if (!row) console.log('err: warehousing init');
-			else {
-				var items = '';
-				for (var i = 0; i < row.length; i++) {
-					row[i].received = row[i].received ? '입고완료' : '미입고';
-					items += `
-					<tr>
-						<td>${row[i].rfid}</td>
-						<td>${row[i].name}</td>
-						<td>${row[i].num}</td>
-						<td>${row[i].received}</td>
-						<td><button class="checkBtn" onclick="location.href='${row[i].picture}'">확인</button></td>
-					</tr>
-				  `;
-				}
-				res.render('Iot/warehousing', {table_data: items});
-			}
+		var items = '';
+		for (var i = 0; i < row.length; i++) {
+			row[i].received = row[i].received ? '입고완료' : '미입고';
+			items += `
+			<tr>
+				<td>${row[i].rfid}</td>
+				<td>${row[i].name}</td>
+				<td>${row[i].num}</td>
+				<td>${row[i].received}</td>
+				<td><button class="checkBtn" onclick="location.href='${row[i].picture}'">확인</button></td>
+			</tr>
+		  `;
+		}
+		res.render('Iot/warehousing', {table_data: items});
 	}
 }
 
@@ -31,12 +29,9 @@ exports.registerItem = function(req, res, db) {
 	var picture = `./${rfid}.jpg`;
 	var id = req.session['memberID'];
 
-	if(!id) res.status(401).render('unauthorized');
-	else {
-		var row = db.query(`INSERT INTO iot VALUES('${rfid}', '${id}', '${name}', ${num}, ${received}, '${picture}');`);
-		if (!row) console.log('err: registerItem');
-		else res.redirect('warehousing');
-	}
+	var row = db.query(`INSERT INTO iot VALUES('${rfid}', '${id}', '${name}', ${num}, ${received}, '${picture}');`);
+	if (!row) console.log('err: registerItem');
+	else res.redirect('warehousing');
 }
 
 
@@ -49,10 +44,7 @@ exports.randomTest = function(req, res, db) {
 	var picture = `./${rfid}.jpg`;
 	var id = req.session['memberID'];
 
-	if(!id) res.status(401).render('unauthorized');
-	else {
-		var row = db.query(`INSERT INTO iot VALUES('${rfid}', '${id}', '${name}', ${num}, ${received}, '${picture}');`);
-			if (!row) console.log('err: randomTest');
-			else res.redirect('warehousing');
-	}
+	var row = db.query(`INSERT INTO iot VALUES('${rfid}', '${id}', '${name}', ${num}, ${received}, '${picture}');`);
+		if (!row) console.log('err: randomTest');
+		else res.redirect('warehousing');
 }

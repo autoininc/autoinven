@@ -134,7 +134,7 @@ exports.ReqEnrollAns = function(req,res,app,db){
         res.send(true);
         connection.end();
       }
-    });    
+    });
   }
     else if(answer="Cancel"){
       connection.query(`DELETE FROM RequestForEnroll WHERE reqID =${reqID}`,function (error, results, fields) {

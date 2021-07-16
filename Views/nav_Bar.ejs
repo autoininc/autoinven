@@ -12,24 +12,27 @@
     <!-- <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="./assets/img/blurred-image-1.jpg"></div> -->
       <ul class="navbar-nav text-uppercase ml-auto">
 
-        <%# NavBar Home Button %>
-
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="/"><i class="fas fa-home" style="margin-right:5px; font-size: 17px;"></i><p>Home</p></a>
-        </li>
-
         <% if(session.memberID) { %>
           <% if(session.type== 'admin') { %>
-            <li class="nav-item" id="resizemenu">
-              <div class="dropdown"><a class="nav-link js-scroll-trigger dropdown-toggle" href="#"
-                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color:transparent;">Management</a>
+            <div class="x991">
+              <li class="nav-item" id="resizemenu">
+                <div class="dropdown"><a class="nav-link js-scroll-trigger dropdown-toggle" href="#"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color:transparent;">Management</a>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="accountMenu">
                       <a class="dropdown-item" href="/Admin/RequestEnroll" id="account_ctrl">창고 등록 요청</a>
+                      <a class="dropdown-item" href="/Admin/RequestIoT">IoT 서비스 요청</a>
                       <a class="dropdown-item" href="/Admin/RequestBuy">창고 구매 요청</a>
                       <a class="dropdown-item" href="/Admin/ContractInfo">거래 기록 정보</a>
                   </div>
-              </div>
-            </li>
+                </div>
+              </li>
+            </div>
+            <div class="x990">
+              <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/Admin/RequestEnroll">창고 등록 요청</a></li>
+              <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/Admin/RequestIoT">IoT 서비스 요청</a></li>
+              <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/Admin/RequestBuy">창고 구매 요청</a></li>
+              <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/Admin/ContractInfo">거래 기록</a></li>
+            </div>
           <% } else if(session.type=='buyer') { %>
             <li class="nav-item"><a href="/Buyer/FindWH" class="nav-link js-scroll-trigger">Search Warehouse</a></li>
           <% } else if(session.type=='provider') { %>
@@ -63,56 +66,25 @@
               <li class="nav-item"><a href="/Buyer/MyWarehouse" class="nav-link js-scroll-trigger">MyWarehouse</a></li>
             <% } %>
             <% if(session.type== 'provider') { %>
-              <li class="nav-item"><a href="/Provider/MyWarehouse" class="nav-link js-scroll-trigger">My Warehouse</a></li>
+              <li class="nav-item"><a href="/Provider/MyWarehouse" class="nav-link js-scroll-trigger">MyWarehouse</a></li>
             <% } %>
               <li class="nav-item"><a href="/User/Show" class="nav-link js-scroll-trigger">MyInfo</a></li>
-          <% } %>
-            <li class="nav-item"><a href="/User/Logout" class="nav-link js-scroll-trigger">Logout</a></li>
+              <li class="nav-item"><a href="/main_Help" class="nav-link js-scroll-trigger">Help</a></li>
+              <% } %>
+              <li class="nav-item"><a href="/User/Logout" class="nav-link js-scroll-trigger">Logout</a></li>
           <% } %>
     </ul>
     </div>
   </div>
 </nav>
 
-<script>
-  var usertype = '<%- session.type %>';
-  console.log(usertype);
-  //management메뉴 resize
-  $(window).resize(function () {
-      if ($(window).width() < 991) {
-          if (usertype == 'admin') {
-              $("#resizemenu").html(
-                  '<li class="nav-item"><a class="nav-link js-scroll-trigger" href="/User/Logout id="account_ctrl">Logout</a></li>' +
-                  '<li class="nav-item"><a class="nav-link js-scroll-trigger" href="/Admin/RequestEnroll">창고 등록 요청</a></li>' +
-                  '<li class="nav-item"><a class="nav-link js-scroll-trigger" href="/Admin/RequestBuy">창고 구매 요청</a></li>' +
-                  '<li class="nav-item"><a class="nav-link js-scroll-trigger" href="/Admin/ContractInfo">거래 기록</a></li>'
-              );
-          } else {
-              $("#resizemenu").html(
-                  '<li class="nav-item"><a class="nav-link js-scroll-trigger" href="/signin" id="account_ctrl">Signin</a></li>' +
-                  '<li class="nav-item"><a class="nav-link js-scroll-trigger" href="/cart">Cart</a></li>');
-          }
-
-      } else {
-          if (usertype) {
-              $("#resizemenu").html(
-                  '<div class="dropdown"><a class="nav-link js-scroll-trigger dropdown-toggle" href="#"' +
-                  'data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color:transparent;">Management</a>' +
-                  '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="accountMenu">' +
-                  '<a class="dropdown-item" href="/Admin/RequestEnroll" id="account_ctrl">창고 등록 요청</a>' +
-                  '<a class="dropdown-item" href="/Admin/RequestBuy">창고 구매 요청</a>' +
-                  '<a class="dropdown-item" href="/Admin/ContractInfo">거래 기록</a></div></div>'
-              );
-          } else {
-              $("#resizemenu").html(
-                  '<div class="dropdown"><a class="nav-link js-scroll-trigger dropdown-toggle" href="#"' +
-                  'data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Account</a>' +
-                  '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' +
-                  '<a class="dropdown-item" href="/signin" id="account_ctrl">Signin</a>' +
-                  '<a class="dropdown-item" href="/cart">Cart</a>'
-
-              );
-          }
-      }
-  });
-</script>
+<style>
+  @media all and (max-width: 990px){
+    .x990{display:block;}
+    .x991{display:none;}
+  }
+  @media all and (min-width: 991px){
+    .x990{display:none;}
+    .x991{display:block;}
+  }
+</style>
