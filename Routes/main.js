@@ -8,8 +8,8 @@ module.exports = function(app,db){
 	    res.render('main_Home',{'app':app,'session':req.session,'db':db});
     });
 
-    router.get('/About',function(req,res,next){
-        res.render('main_About',{'app':app,'session':req.session,'db':db});
+    router.get('/main_Help',function(req,res,next){
+        res.render('main_Help',{'app':app,'session':req.session,'db':db});
     });
 
     return router;
