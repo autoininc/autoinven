@@ -6,6 +6,14 @@ module.exports = function(app,db){
     const ad_ReqBuy = require('./ad_RequestBuy');
     const ad_ContractInfo = require('./ad_ContractInfo');
 
+    var check = (req, res, next) => {
+        var type = req.session['type'];
+        if (!type) res.render('Alert/needLogin');
+        else if (type === 'admin') next();
+        else res.render('Alert/cannotAccess');
+    };
+    router.use(check);
+
     router.get('/RequestEnroll',function(req,res,next){
         var items = ad_ReqEnroll.RequestForEnroll(req,res,app,db);
         console.log(items);
