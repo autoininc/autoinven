@@ -1,12 +1,3 @@
----
-name: Pull Request
-about: Pull Request
-title: ""
-labels: ''
-assignees: ''
-
----
-
 ## 개요
 
 ## 작업사항
@@ -19,3 +10,6 @@ assignees: ''
 ## 사용방법
 
 ## 기타
+
+
+resolved: #

@@ -1,7 +1,7 @@
 ---
-name: Custom Feature Report
+name: Custom Enhancement Report
 about: Suggest new feature of this project
-title: "[Feature]"
+title: "[Enhancement]"
 labels: ''
 assignees: ''
 
