@@ -23,7 +23,7 @@ exports.EnrollWH = function(req,res,app,db,fileName){
     "price": req.body.price,
     "infoComment": req.body.infoComment,
     "etcComment" :req.body.etcComment,
-    "useIot" :0
+    "iotStat" : "N"  // pv_EnrollWH.ejs - iotStat 구현되면 수정
   };
 
   //예외처리를 위한 정규식
@@ -62,7 +62,7 @@ exports.EnrollWH = function(req,res,app,db,fileName){
             "price": req.body.price,
             "infoComment": req.body.infoComment,
             "etcComment" :req.body.etcComment,
-            "useIot" :0
+            "iotStat" : "N"  // pv_EnrollWH.ejs - iotStat 구현되면 수정
         }
         let reqResult = db.query('SELECT * from RequestForEnroll ORDER BY reqID DESC');
         //let logResult = db.query('SELECT * from Log ORDER BY logID DESC');

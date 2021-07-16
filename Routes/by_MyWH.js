@@ -54,7 +54,7 @@ exports.Mywarehouse = function(req,res,app,db){
               "\"infoComment\" :\""+ results[step].infoComment+"\","+
               "\"etcComment\" :\""+ results[step].etcComment+"\","+
               "\"zipcode\" :\""+ results[step].zipcode+"\","+
-              "\"useIot\" :"+ results[step].useIot+
+              "\"iotStat\" :\""+ results[step].iotStat+"\""+
           "}";
           items+=obj;
 
