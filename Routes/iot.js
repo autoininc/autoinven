@@ -13,7 +13,7 @@ module.exports = function(app,db){
 		var wid = req.session['warehouseID'];
 		var hostIndex = (req.protocol + '://' + req.get('host')).length;
 		var ref = req.headers.referer ? req.headers.referer.toLowerCase().substring(hostIndex) : '';
-		const refererPaths = ['/provider/mywarehouse', '/buyer/mywarehouse', '/iot', '/iot/monitoring', '/iot/warehousing', '/iot/help', 'iot/registerItem', 'iot/statistics'];
+		const refererPaths = ['/provider/mywarehouse', '/buyer/mywarehouse', '/iot', '/iot/monitoring', '/iot/warehousing', '/iot/help'];
 
 		if (!id) res.render('Alert/needLogin');
 		else if (req.path === '/' && req.method === 'POST') return next();

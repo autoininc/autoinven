@@ -13,7 +13,7 @@ module.exports = function(app,db){
     var check = (req, res, next) => {
         const id = req.session['memberID'];
         const path = req.path.toLowerCase();
-        const needLoginPath = ['/edit', '/edit/pw', '/show'];
+        const needLoginPath = ['/logout', '/edit', '/edit/pw', '/show'];
         if (!id && needLoginPath.some((e) => (path === e || path === e + '/'))) res.render('Alert/needLogin');
         else next();
     };
