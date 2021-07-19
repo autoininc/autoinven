@@ -3,14 +3,16 @@ module.exports = function(app,db){
 	const express = require('express');
 	const router = express.Router();
 
-	const iot_mypage = require('./iot_mypage');
 	const iot_warehousing = require('./iot_warehousing');
+	const iot_statistics = require('./iot_statistics');
+	const iot_help = require('./iot_help');
+	const iot_mypage = require('./iot_mypage');
 
 	var check = (req, res, next) => {
 		var id = req.session['memberID'];
 		var wid = req.session['warehouseID'];
 		var hostIndex = (req.protocol + '://' + req.get('host')).length;
-		var ref = req.headers.referer ? req.headers.referer.toLowerCase().substring(hostIndex) : '';
+		var ref = req.headers.referer?.toLowerCase().substring(hostIndex);
 		const refererPaths = ['/provider/mywarehouse', '/buyer/mywarehouse', '/iot', '/iot/monitoring', '/iot/warehousing', '/iot/help'];
 
 		if (!id) res.render('Alert/needLogin');
@@ -21,12 +23,16 @@ module.exports = function(app,db){
 	};
 	router.use(check);
 
-	router.get('/', (req, res, next) => { iot_mypage.init(req, res, db) });
+	router.get('/', (req, res, next) => { res.render('Iot/monitoring') });
 	router.post('/', (req, res, next) => { iot_mypage.sessionCheck(req, res, db) });
 
 	router.get('/monitoring', (req, res, next) => { res.render('Iot/monitoring') });
 
 	router.get('/warehousing', (req, res, next) => { iot_warehousing.init(req, res, db) });
+
+	router.get('/statistics', (req, res, next) => { iot_statistics.init(req, res, db) });
+
+	router.get('/help', (req, res, next) => { iot_help.init(req, res, db) });
 
 	router.get('/randomTest', (req, res, next) => { iot_warehousing.randomTest(req, res, db) });
 

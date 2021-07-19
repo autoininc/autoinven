@@ -1,3 +1,4 @@
+
 * {
   padding: 0;
   margin: 0;
@@ -6,10 +7,10 @@
 }
 
 body {
-  background: #f5f6f7;
+  background: rgb(245, 245, 245);
   height: 100%;
   width: 1000px;
-  font-family: Dotum, '돋움', Helvetica, sans-serif;
+  /*font-family: Dotum, '돋움', Helvetica, sans-serif;*/
 }
 
 .header{
@@ -129,7 +130,6 @@ body {
   display: block;
   padding: 50px;
   margin: 20px;
-  margin-left: 250px;
   border-radius: 10px 10px 10px 10px;
   background-color: white;
 }
@@ -152,6 +152,10 @@ td {
   padding: 3px;
 }
 
+tr {
+  background-color: #FFF;
+}
+
 .checkBtn {
   width: 50px;
   height: 30px;
@@ -165,18 +169,7 @@ td {
   color: black;
 }
 
-.warehousingContent button{
-  border: 1px solid #5f4ebd;
-  background-color: rgba(0, 0, 0, 0);
-  color: #5f4ebd;
-  padding: 5px;
- }
- .warehousingContent button:hover{
-     background-color: #5f4ebd;
-     color: white;
- }
- 
- .whRegBtn{
+.whRegBtn{
      border-top-left-radius: 5px;
      border-bottom-left-radius: 5px;
      font-size:24px;
@@ -211,11 +204,6 @@ td {
  }
 
 /* monitoring page css*/
- .table-monitor {
-  margin-left: 200px;
-  text-align: center;
-}
-
 .sensor {
   display: inline-block;
   margin: 30px;
