@@ -12,7 +12,7 @@ module.exports = function(app,db){
 		var id = req.session['memberID'];
 		var wid = req.session['warehouseID'];
 		var hostIndex = (req.protocol + '://' + req.get('host')).length;
-		var ref = req.headers.referer?.toLowerCase().substring(hostIndex);
+		var ref = req.headers.referer ? req.headers.referer.toLowerCase().substring(hostIndex) : '';
 		const refererPaths = ['/provider/mywarehouse', '/buyer/mywarehouse', '/iot', '/iot/monitoring', '/iot/warehousing', '/iot/help'];
 
 		if (!id) res.render('Alert/needLogin');
@@ -25,7 +25,6 @@ module.exports = function(app,db){
 
 	router.get('/', (req, res, next) => { res.render('Iot/monitoring') });
 	router.post('/', (req, res, next) => { iot_mypage.sessionCheck(req, res, db) });
-
 	router.get('/monitoring', (req, res, next) => { res.render('Iot/monitoring') });
 
 	router.get('/warehousing', (req, res, next) => { iot_warehousing.init(req, res, db) });
