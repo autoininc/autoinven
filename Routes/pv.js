@@ -4,6 +4,15 @@ module.exports = function(app,db){
 
     const pv_myWH = require('./pv_MyWH');
     const pv_EnrollWH = require('./pv_EnrollWH');
+
+    var check = (req, res, next) => {
+        var type = req.session['type'];
+        if (!type) res.render('Alert/needLogin');
+        else if (type === 'provider') next();
+        else res.render('Alert/cannotAccess');
+    };
+    router.use(check);
+
     router.get('/',function(req,res,next){
         res.render('User/Provider/pv_EnrollWH',{'app':app,'session':req.session,'db':db});
     });
@@ -40,6 +49,10 @@ module.exports = function(app,db){
 
     router.post('/MyWarehouse/Enroll/Ans',function(req,res,next){
         pv_myWH.ReqEnrollAns(req,res,app,db);
+    });
+
+    router.post('/MyWarehouse/IoT/Ans',function(req,res,next){
+        pv_myWH.ReqIoTAns(req,res,app,db);
     });
     router.get('/MyWarehouse',function(req,res,next){
         var enrollItems = pv_myWH.RequestForEnroll(req,res,app,db);

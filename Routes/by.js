@@ -4,6 +4,14 @@ module.exports = function(app,db){
     var findWH = require('./by_FindWH');
     var MyWH = require('./by_MyWH');
 
+    var check = (req, res, next) => {
+        var type = req.session['type'];
+        if (!type) res.render('Alert/needLogin');
+        else if (type === 'buyer') next();
+        else res.render('Alert/cannotAccess');
+    };
+    router.use(check);
+
     router.get('/',function(req,res,next){
         res.render('User/Buyer/by_FindWH',{'app':app,'session':req.session,'db':db});
     });

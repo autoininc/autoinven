@@ -27,7 +27,7 @@ setInterval(() => {
 	pubsub.publish("monitoring", {
 		value: valueStr,
 	});
-	console.log(valueStr);  // test
+	//console.log(valueStr);  // test
 }, 1000);
 
 var apolloServer = new ApolloServer({

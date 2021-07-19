@@ -28,6 +28,18 @@
                   </a>
                 </div>
                 <div id="collapse<%=i%>" class="collapse" data-parent="#accordion">
+                  <% if (wList['item' + i].iotStat === 'Y' || wList['item' + i].iotStat === 'W') { %>
+                    <div style="text-align: right; padding-right: 5%;">
+                      <form action="/iot" method="POST">
+                        <input type="hidden" id="wid" name="wid" value="<%= wList['item' + i].warehouseID %>">
+                        <% if (wList['item' + i].iotStat === 'Y') { %>
+                          <button class="btn btn-primary">IoT</button>
+                        <% } else { %>
+                          <button class="btn btn-default" disabled>IoT</button>
+                        <% } %>
+                      </form>
+                    </div>
+                  <% } %>
                   <div class="card-body">
                     <table class="board-table table ">
                       <a style = "font-size:24px">창고 정보</a>
@@ -37,6 +49,7 @@
                           <th>창고 번호</th>
                           <th>총 면적</th>
                           <th>사용 가능 면적</th>
+                          <th>IoT Service</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -45,6 +58,13 @@
                           <td><%= wList['item'+i].warehouseID %></td>
                           <td><%= wList['item'+i].floorArea %></td>
                           <td><%= wList['item'+i].useableArea %></td>
+                          <% if (wList['item'+i].iotStat == "Y"){ %>
+                            <td>In use</td>
+                          <% } else if (wList['item'+i].iotStat == "W"){%>
+                            <td>waiting for approval</td>
+                          <% } else if (wList['item'+i].iotStat == "N"){%>
+                            <td><button type="button" class="btn btn-sm" onclick="reqClick(<%=i%>, <%= wList['item' + i].warehouseID %>)">Request Service</button></td>
+                          <% } %>
                         </tr>
                       </tbody>
                     </table>
@@ -53,7 +73,7 @@
                       <table class="table table-striped ">
                         <a style = "font-size:24px">거래 내역</a>
                         <thead class="thead-dark">
-                          <tr class="d-flex">  
+                          <tr class="d-flex">
                             <th class="col-2">창고번호</th>
                             <th class="col-1">거래금액($)</th>
                             <th class="col-3">대여기간</th>
@@ -62,13 +82,14 @@
                             <th class="col-2">email</th>
                             <th class="col-1">국적</th>
                             <th class="col-1">회사 이름</th>
+                            <th class="col-1">우편번호</th>
                             <th class="col-3">회사 주소</th>
                             <th></th>
                           </tr>
                         </thead>
                         <tbody>
                           <tbody>
-                            <% for(var j=0; j < Object.keys(requestItems).length; j++) { %>     
+                            <% for(var j=0; j < Object.keys(requestItems).length; j++) { %>
                               <%if(requestItems['item'+j].reqType == 'ReqPayAcpt' && wList['item'+i].warehouseID == requestItems['item'+j].warehouseID) { %>
                                 <tr class="d-flex">
                                   <td class="col-2"><%= requestItems['item'+j].warehouseID %></td>
@@ -79,6 +100,7 @@
                                   <td class="col-2"><%= requestItems['item'+j].email%></td>
                                   <td class="col-1"><%= requestItems['item'+j].national%></td>
                                   <td class="col-1"><%= requestItems['item'+j].CN%></td>
+                                  <td class="col-1"><%= requestItems['item'+j].CZ%></td>
                                   <td class="col-3"><%= requestItems['item'+j].CA%></td>
                                   <td></td>
                                 </tr>
@@ -87,7 +109,7 @@
                            </tbody>
                          </tbody>
                       </table>
-                    </div>                        
+                    </div>
                   </div>      <!-- card body-->
                </div>         <!-- collapse-->
              </div>           <!-- class card-->
@@ -135,7 +157,7 @@
             </tbody>
           </table>
         </div>
-        
+
         <div class="container mb-4">
           <h2 class="mb-3">Buy Request lists</h2>
           <% for(var i=0; i < Object.keys(requestItems).length; i++) { %>
@@ -203,6 +225,27 @@
   </body>
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script>
+    function reqClick(i, WID) {
+      $.ajax({
+          url: '/Provider/MyWarehouse/IoT/Ans',
+          dataType: 'json',
+          type: 'POST',
+          data: {
+            warehouseID: parseInt(WID)
+          },
+          success:function(data){
+            if(data==true){
+              alert("신청하였습니다.");
+              window.location.href = "/Provider/MyWarehouse";
+            }
+            else{
+              alert("에러가 발생했습니다.");
+              window.location.href = "/Provider/MyWarehouse";
+            }
+          }
+      });
+    }
+
     function pvClick(where, i, flag) {
       var URL = '/Provider/MyWarehouse/Enroll/Ans';
       var Area = null;
