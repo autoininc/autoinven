@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 /*!
 * Start Bootstrap - Agency v6.0.2 (https://startbootstrap.com/template-overviews/agency)
 * Copyright 2013-2020 Start Bootstrap
@@ -49,8 +50,9 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-#home_title{
-  text-align: center!important;
+
+#home_title {
+  text-align: center !important;
 }
 
 .navbar-brand {
@@ -70,7 +72,7 @@ html {
 }
 
 #mainNav .navbar-toggler {
-  padding: 0.75rem;
+  /* padding: 0.75rem; */
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 0.75rem;
   color: #fff;
@@ -78,6 +80,7 @@ html {
   background-color: #fed136;
   border: 0;
 }
+
 #mainNav .navbar-brand {
   color: #fed136;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -97,10 +100,11 @@ html {
   letter-spacing: 0.0625em;
 }
 
-#mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
+#mainNav .navbar-nav .nav-item .nav-link.active,
+#mainNav .navbar-nav .nav-item .nav-link:hover {
   color: #fed136;
 }
-  
+
 @media (min-width: 992px) {
   #mainNav {
     padding-top: 1.5rem;
@@ -125,7 +129,7 @@ html {
     padding-bottom: 1rem;
     background-color: #212529;
   }
-  
+
   #mainNav.navbar-shrink .navbar-brand {
     font-size: 1.25em;
   }
@@ -143,7 +147,7 @@ html {
     margin-right: 0;
   }
 }
-  
+
 .dropup,
 .dropright,
 .dropdown,
@@ -225,6 +229,26 @@ html {
   }
 }
 
+@media all and (max-width: 990px) {
+  .x990 {
+    display: block;
+  }
+
+  .x991 {
+    display: none;
+  }
+}
+
+@media all and (min-width: 991px) {
+  .x990 {
+    display: none;
+  }
+
+  .x991 {
+    display: block;
+  }
+}
+
 @media (min-width: 992px) {
   .dropdown-menu-lg-left {
     right: auto;
@@ -247,4 +271,9 @@ html {
     right: 0;
     left: auto;
   }
+}
+
+.ml-1,
+.mx-1 {
+  margin-left: 0rem !important;
 }
