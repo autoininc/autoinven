@@ -1,23 +1,47 @@
 exports.init = function(req, res, db) {
 	var id = req.session['memberID'];
 	var wid = req.session['warehouseID'];
-	var row = db.query("SELECT * FROM iot WHERE id=? and warehouseID=?;", [id, wid]);
-	if (!row) console.log('err: warehousing init');
-	else {
-		var items = '';
-		for (var i = 0; i < row.length; i++) {
-			row[i].received = row[i].received ? '입고완료' : '미입고';
-			items += `
-			<tr>
-				<td>${row[i].rfid}</td>
-				<td>${row[i].name}</td>
-				<td>${row[i].num}</td>
-				<td>${row[i].received}</td>
-				<td><button class="checkBtn" onclick="location.href='${row[i].picture}'">확인</button></td>
-			</tr>
-		  `;
+	var row = db.query(`SELECT memberID FROM Provider WHERE warehouseID=?;`, [wid]);
+	console.log(row[0].memberID + ", " + id);
+	if (!row) console.log('err: check user');
+	else if (row[0].memberID == id) {		
+		var query = db.query("SELECT * FROM iot WHERE warehouseID=?;", [wid]);
+		if (!query) console.log('err: warehousing init');
+		else {
+			var items = '';
+			for (var i = 0; i < query.length; i++) {
+				query[i].received = query[i].received ? '입고완료' : '미입고';
+				items += `
+				<tr>
+					<td>${query[i].rfid}</td>
+					<td>${query[i].name}</td>
+					<td>${query[i].num}</td>
+					<td>${query[i].received}</td>
+					<td><button class="checkBtn" onclick="location.href='${query[i].picture}'">확인</button></td>
+				</tr>
+			  `;
+			}
+			res.render('Iot/warehousing', {table_data: items});
 		}
-		res.render('Iot/warehousing', {table_data: items});
+	} else {
+		var query = db.query("SELECT * FROM iot WHERE id=? and warehouseID=?;", [id, wid]);
+		if (!query) console.log('err: warehousing init');
+		else {
+			var items = '';
+			for (var i = 0; i < query.length; i++) {
+				query[i].received = query[i].received ? '입고완료' : '미입고';
+				items += `
+				<tr>
+					<td>${query[i].rfid}</td>
+					<td>${query[i].name}</td>
+					<td>${query[i].num}</td>
+					<td>${query[i].received}</td>
+					<td><button class="checkBtn" onclick="location.href='${query[i].picture}'">확인</button></td>
+				</tr>
+			`;
+			}
+			res.render('Iot/warehousing', {table_data: items});
+		}
 	}
 }
 
