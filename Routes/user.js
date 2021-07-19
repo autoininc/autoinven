@@ -13,8 +13,8 @@ module.exports = function(app,db){
     var check = (req, res, next) => {
         const id = req.session['memberID'];
         const path = req.path.toLowerCase();
-        const needLoginPath = ['/Logout', '/edit', '/edit/pw', '/show', '/delete'];
-        if (!id && needLoginPath.some((e) => (path === e || path === e + '/'))) res.render('Alert/cannotAccess');
+        const needLoginPath = ['/logout', '/edit', '/edit/pw', '/show'];
+        if (!id && needLoginPath.some((e) => (path === e || path === e + '/'))) res.render('Alert/needLogin');
         else next();
     };
     router.use(check);
@@ -56,7 +56,7 @@ module.exports = function(app,db){
         res.render('User/user_Edit',{'app':app,'session':req.session,'db':db});
     });
 
-    router.post('/Edit',function(req,res,next){        
+    router.post('/Edit',function(req,res,next){
         edit.edit(req,res,app,db);
     });
 
