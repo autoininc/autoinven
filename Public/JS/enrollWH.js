@@ -6,7 +6,6 @@
         $("#enrollForm").submit(function (evt) {
             evt.preventDefault();
 
-            var whID = $("#warehouseID").val();
             var whName = $("#warehouseName").val();
             var address = $("#address").val();
             var landArea = $("#landArea").val();
@@ -16,16 +15,8 @@
             var etcComment = $("#etcComment").val();
             var image = $("#profile_img").val();
 
-            //check id is not null
-            if (!whID) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Fail',
-                    text: 'You have to insert your warehouseID'
-                }).then(() => {
-                })
-            }
-            else if (!whName) {
+            //check wname is not null
+            if (!whName) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Fail',
